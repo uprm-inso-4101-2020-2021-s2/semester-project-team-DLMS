@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
-from UPR_Grader.models import Students
 from django.http import HttpResponse
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 import random
 from django.contrib import auth
 from django.contrib import messages
-import psycopg2
 from .models import Students
+from passlib.hash import postgres_md5
 
 # Create your views here.
 def register_page(request):
@@ -25,8 +23,18 @@ def register_page(request):
                                         username=username)
         user.save()
 
+        # Hashing the student's password
+        hashed_password = postgres_md5.hash(str(password1), user=str(email))
+
+        # Testing hashing
+        # print(hashed_password)
+        # print(email)
+        # print(postgres_md5.verify(str(password1), hashed_password, user=str(email)))
+        # print(postgres_md5.verify(str(password1), hashed_password, user="test@gmail.com"))
+
         # Inserting student data to UPR_Grader_DB
-        student_data = Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email)
+        student_data = Students.objects.create(student_first_name=first_name, student_last_name=last_name,
+                                               student_email=email, student_password=hashed_password)
 
         return render(request, 'UPR_Grader/home.html')
 
