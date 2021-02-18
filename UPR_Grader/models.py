@@ -8,3 +8,4 @@ class Students(models.Model):
     student_first_name = models.CharField(max_length=25)
     student_last_name = models.CharField(max_length=50)
     student_password = models.CharField(max_length=500)
+    last_login = models.DateTimeField(auto_now=True)
