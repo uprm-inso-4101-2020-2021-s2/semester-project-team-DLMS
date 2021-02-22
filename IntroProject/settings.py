@@ -88,9 +88,6 @@ DATABASES = {
     }
 }
 
-AUTHENTICATION_BACKENDS = ['django.contrib.auth.backends.BaseBackend',
-                           'UPR_Grader.backends.StudentsBackend']
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
