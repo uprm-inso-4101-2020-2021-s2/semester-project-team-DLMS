@@ -5,10 +5,15 @@
     <title>Home</title>
 </head>
 <body>
-
+<table>
 <h4>
     Hello User
 </h4>
 
+<form action= "" method= "POST">
+    {% csrf_token %}
+    <input type="submit" name="settings" value="Settings">
+</form>
+</table>
 </body>
 </html>

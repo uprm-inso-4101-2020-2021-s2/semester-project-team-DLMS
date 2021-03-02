@@ -1,11 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
 
 class Students(models.Model):
-    student_email = models.EmailField(max_length=100)
-    student_first_name = models.CharField(max_length=25)
-    student_last_name = models.CharField(max_length=50)
-    student_password = models.CharField(max_length=500)
-    last_login = models.DateTimeField(auto_now=True)
+    #CAMPUS_CHOICES = ['Aguadilla', 'Arecibo', 'Bayamon', 'Carolina', 'Cayey', 'Ciencias Medicas', 'Humacao', 'Mayaguez', 'Ponce', 'Rio Piedras', 'Utuado']
+    #PROGRAM_CHOICES = ['ICOM', 'INEL', 'INSO', 'CIIC']
+    student_campus = models.CharField(max_length=20, default='Mayaguez')
+    student_program = models.CharField(max_length=20, default='ICOM')  # Replace later with program table foreign key(ManyToOne)
+    student_user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
+    student_gpa = models.CharField(max_length=4, default=0.00)
+    student_major_gpa = models.CharField(max_length=4, default=0.00)

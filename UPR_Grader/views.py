@@ -1,12 +1,13 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from django.contrib.auth import login
+from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Students
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password, check_password
 from django.db import *
+from django.core.exceptions import *
 
 # Create your views here.
 def register_page(request):
@@ -29,6 +30,8 @@ def register_page(request):
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
                                                 last_name=last_name)
                 user.save()
+                new_student = Students.objects.create(student_user=user, student_program='None', student_campus='None')
+                new_student.save()
 
                 return render(request, 'UPR_Grader/home.html')
 
@@ -48,7 +51,7 @@ def login_page(request):
 
         if user is not None:
             login(request, user)
-            return render(request, 'UPR_Grader/home.html')
+            return redirect('/home')
         else:
             messages.info(request, 'Invalid Username or Password')
             return redirect("/")
@@ -57,4 +60,30 @@ def login_page(request):
 
 
 def home_page(request):
-    return HttpResponse("WELCOME HOME")
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+    if request.method == 'POST':
+        settings = request.POST['settings']
+        if request.user.is_authenticated and settings is not None:
+            return redirect('/settings')
+
+    return render(request, 'UPR_Grader/home.html')
+
+
+def settings_page(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+
+    student_data = Students.objects.all()
+    if request.method == 'POST':
+        #campus = request.POST['campus']
+        program = request.POST.get('program', None)
+        logout_request = request.POST.get('logout', None)
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
+
+        if request.user.is_authenticated and program is not None:
+            Students.objects.filter(student_user=request.user.id).update(student_program=program)
+
+    return render(request, 'UPR_Grader/settings.html', {'data': student_data})
