@@ -84,6 +84,7 @@ def settings_page(request):
         campus = request.POST.get('campus', None)
         program = request.POST.get('program', None)
         logout_request = request.POST.get('logout', None)
+        delete_request = request.POST.get('delete_request', None)
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
@@ -93,5 +94,12 @@ def settings_page(request):
 
         if request.user.is_authenticated and campus is not None:
             Students.objects.filter(student_user=request.user.id).update(student_campus=campus)
+
+        if request.user.is_authenticated and delete_request is not None:
+            Students.objects.filter(student_user=request.user.id).delete()
+            request.user.delete()
+            logout(request)
+            return redirect('../')
+
 
     return render(request, 'UPR_Grader/settings.html', {'data': student_data, 'current_student': current_student})
