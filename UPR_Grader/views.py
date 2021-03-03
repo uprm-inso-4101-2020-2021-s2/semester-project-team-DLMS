@@ -71,8 +71,9 @@ def home_page(request):
         if request.user.is_authenticated and settings is not None:
             return redirect('/settings')
 
-    return render(request, 'UPR_Grader/home.html')
+    student_data = Students.objects.filter(student_user=request.user.id)
 
+    return render(request, 'UPR_Grader/home.html', {'data':student_data})
 
 def settings_page(request):
     if not request.user.is_authenticated:
