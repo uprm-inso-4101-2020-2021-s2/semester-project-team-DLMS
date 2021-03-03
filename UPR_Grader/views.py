@@ -18,13 +18,6 @@ def register_page(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
-        # Hashing the student's password
-        # hashed_password = make_password(password1)
-
-        # Inserting student data to UPR_Grader_DB
-        # Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
-        #                         student_password=hashed_password)
-
         if password1 == password2:
             try:
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
@@ -40,7 +33,7 @@ def register_page(request):
                     return redirect('/home')
 
             except IntegrityError:
-                # CHANGE
+                # TODO: CHANGE
                 print("DUMB")
 
     return render(request, 'UPR_Grader/register.html')
@@ -66,8 +59,10 @@ def login_page(request):
 def home_page(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
+
     if request.method == 'POST':
         settings = request.POST['settings']
+
         if request.user.is_authenticated and settings is not None:
             return redirect('/settings')
 
@@ -80,11 +75,13 @@ def settings_page(request):
 
     student_data = Students.objects.all()
     current_student = Students.objects.filter(student_user=request.user.id)
+
     if request.method == 'POST':
         campus = request.POST.get('campus', None)
         program = request.POST.get('program', None)
         logout_request = request.POST.get('logout', None)
         delete_request = request.POST.get('delete_request', None)
+
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
@@ -100,6 +97,5 @@ def settings_page(request):
             request.user.delete()
             logout(request)
             return redirect('../')
-
 
     return render(request, 'UPR_Grader/settings.html', {'data': student_data, 'current_student': current_student})
