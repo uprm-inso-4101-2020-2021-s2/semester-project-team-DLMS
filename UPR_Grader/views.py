@@ -33,7 +33,11 @@ def register_page(request):
                 new_student = Students.objects.create(student_user=user, student_program='None', student_campus='None')
                 new_student.save()
 
-                return render(request, 'UPR_Grader/home.html')
+                user = authenticate(request, username=email, password=password1)
+
+                if user is not None:
+                    login(request, user)
+                    return redirect('/home')
 
             except IntegrityError:
                 # CHANGE
