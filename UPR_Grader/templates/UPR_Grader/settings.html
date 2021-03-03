@@ -6,11 +6,11 @@
 </head>
 <body>
 <table>
-{% for x in data %}
-    <tr>
-        <td>{{x.student_user.username}}</td>
-    </tr>
-{% endfor %}
+    {% for x in data %}
+        <tr>
+            <td>{{x.student_user.username}}</td>
+        </tr>
+    {% endfor %}
 </table>
 <form action= "" method= "POST">
     {% csrf_token %}
@@ -18,14 +18,32 @@
 
 
 
-<label for="program">Select one:</label>
+    <label for="program">Select one:</label>
 
-<select name="program" id="program">
-    <option value="ICOM">ICOM</option>
-    <option value="INEL">INEL</option>
-    <option value="INSO">INSO</option>
-    <option value="CIIC">CIIC</option>
-</select>
+    <select name="program" id="program">
+        <option value={{current_student.first.student_program}}>{{ current_student.first.student_program }}</option>
+        <option value="ICOM">ICOM</option>
+        <option value="INEL">INEL</option>
+        <option value="INSO">INSO</option>
+        <option value="CIIC">CIIC</option>
+    </select>
+
+    <label for="campus">Select one:</label>
+
+    <select name="campus" id="campus">
+        <option value={{current_student.first.student_campus}}>{{ current_student.first.student_campus }}</option>
+        <option value="Aguadilla">Aguadilla</option>
+        <option value="Arecibo">Arecibo</option>
+        <option value="Bayamon">Bayamon</option>
+        <option value="Carolina">Carolina</option>
+        <option value="Cayey">Cayey</option>
+        <option value="Ciencias Medicas">Ciencias Medicas</option>
+        <option value="Humacao">Humacao</option>
+        <option value="Mayaguez">Mayaguez</option>
+        <option value="Ponce">Ponce</option>
+        <option value="Rio Piedras">Rio Piedras</option>
+        <option value="Utuado">Utuado</option>
+    </select>
     <input type="submit" value="Submit">
 
 </form>

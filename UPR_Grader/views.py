@@ -79,8 +79,9 @@ def settings_page(request):
         raise Exception(DisallowedRedirect)
 
     student_data = Students.objects.all()
+    current_student = Students.objects.filter(student_user=request.user.id)
     if request.method == 'POST':
-        #campus = request.POST['campus']
+        campus = request.POST.get('campus', None)
         program = request.POST.get('program', None)
         logout_request = request.POST.get('logout', None)
         if request.user.is_authenticated and logout_request is not None:
@@ -90,4 +91,7 @@ def settings_page(request):
         if request.user.is_authenticated and program is not None:
             Students.objects.filter(student_user=request.user.id).update(student_program=program)
 
-    return render(request, 'UPR_Grader/settings.html', {'data': student_data})
+        if request.user.is_authenticated and campus is not None:
+            Students.objects.filter(student_user=request.user.id).update(student_campus=campus)
+
+    return render(request, 'UPR_Grader/settings.html', {'data': student_data, 'current_student': current_student})
