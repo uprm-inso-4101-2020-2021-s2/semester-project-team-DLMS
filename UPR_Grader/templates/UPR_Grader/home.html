@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
+{%  extends 'UPR_Grader/main.html' %}
 
-<h4>
-    Hello User
-</h4>
+{% block content %}
+    <div class="main-content">
 
-</body>
-</html>
+        <h1><p align="center"> <b>{{ name }}</b></p></h1>
+        <h3><p align="center"> Campus: {{ campus }}</p></h3>
+        <h3><p align="center"> Academic Program: {{ program }}</p></h3>
+        <h3><p align="center"> Overall GPA: {{ overall_gpa }}</p></h3>
+        <h3><p align="center"> Major GPA: {{ major_gpa }}</p></h3>
+    </div>
+{% endblock %}
