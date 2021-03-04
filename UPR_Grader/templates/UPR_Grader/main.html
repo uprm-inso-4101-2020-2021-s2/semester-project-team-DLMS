@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>UPR GRADER</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static '/css/home.css' %}">
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-global navbar-fixed-top">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">UPR GRADER</a>
+      </div>
+      <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-user navbar-right">
+          <li><a href="../home/"><span class="glyphicon glyphicon-user"></span> {{ name }}</a></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+    </div>
+    </nav>
+
+    <nav class="navbar-primary">
+    <a href="#" class="btn-expand-collapse"><span class="glyphicon glyphicon-menu-left"></span></a>
+    <ul class="navbar-primary-menu">
+        <li>
+            <a href="../home/"><span class="glyphicon glyphicon-home"></span><span class="nav-label">Home</span></a>
+            <a href="#"><span class="glyphicon glyphicon-book"></span><span class="nav-label">Curriculum</span></a>
+            <a href="#"><span class="glyphicon glyphicon-list"></span><span class="nav-label">Enrolled Courses</span></a>
+            <a href="../settings/"><span class="glyphicon glyphicon-cog"></span><span class="nav-label">Settings</span></a>
+            <form name = "logout" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="logout" value="logout">
+            <a onclick="document.logout.submit()"><span class="glyphicon glyphicon-log-out"></span><span class="nav-label">Logout</span></a>
+            </form>
+        </li>
+    </ul>
+    </nav>
+
+    {% block content %}
+
+
+    {% endblock %}
+</body>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="{% static '/js/home.js' %}"></script>
+</html>

@@ -67,13 +67,22 @@ def home_page(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
     if request.method == 'POST':
-        settings = request.POST['settings']
-        if request.user.is_authenticated and settings is not None:
-            return redirect('/settings')
 
-    student_data = Students.objects.filter(student_user=request.user.id)
+        logout_request = request.POST.get('logout', None)
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
 
-    return render(request, 'UPR_Grader/home.html', {'data':student_data})
+    name = request.user.first_name + ' ' + request.user.last_name
+    context = {'name': name,
+               'campus': request.user.students.student_campus,
+               'program': request.user.students.student_program,
+               'overall_gpa': request.user.students.student_gpa,
+               'major_gpa': request.user.students.student_major_gpa
+               }
+
+    return render(request, 'UPR_Grader/home.html', context)
+
 
 def settings_page(request):
     if not request.user.is_authenticated:
