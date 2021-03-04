@@ -1,19 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-<table>
-<h4>
-    Hello User
-</h4>
+{%  extends 'UPR_Grader/main.html' %}
 
-<form action= "" method= "POST">
-    {% csrf_token %}
-    <input type="submit" name="settings" value="Settings">
-</form>
-</table>
-</body>
-</html>
+{% block content %}
+    <div class="main-content">
+
+        <h1><p align="center"> <b>{{ name }}</b></p></h1>
+        <h3><p align="center"> Campus: {{ campus }}</p></h3>
+        <h3><p align="center"> Academic Program: {{ program }}</p></h3>
+        <h3><p align="center"> Overall GPA: {{ overall_gpa }}</p></h3>
+        <h3><p align="center"> Major GPA: {{ major_gpa }}</p></h3>
+    </div>
+{% endblock %}

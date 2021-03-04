@@ -18,6 +18,13 @@ def register_page(request):
         password1 = request.POST['password1']
         password2 = request.POST['password2']
 
+        # Hashing the student's password
+        # hashed_password = make_password(password1)
+
+        # Inserting student data to UPR_Grader_DB
+        # Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
+        #                         student_password=hashed_password)
+
         if password1 == password2:
             try:
                 user = User.objects.create_user(username=email, email=email, password=password1, first_name=first_name,
@@ -61,12 +68,21 @@ def home_page(request):
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
-        settings = request.POST['settings']
 
-        if request.user.is_authenticated and settings is not None:
-            return redirect('/settings')
+        logout_request = request.POST.get('logout', None)
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
 
-    return render(request, 'UPR_Grader/home.html')
+    name = request.user.first_name + ' ' + request.user.last_name
+    context = {'name': name,
+               'campus': request.user.students.student_campus,
+               'program': request.user.students.student_program,
+               'overall_gpa': request.user.students.student_gpa,
+               'major_gpa': request.user.students.student_major_gpa
+               }
+
+    return render(request, 'UPR_Grader/home.html', context)
 
 
 def settings_page(request):
