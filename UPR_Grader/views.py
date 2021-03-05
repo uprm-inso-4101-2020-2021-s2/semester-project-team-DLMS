@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Students
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password, check_password
 from django.db import *
 from django.core.exceptions import *
 
@@ -17,13 +15,6 @@ def register_page(request):
         last_name = request.POST['last_name']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-
-        # Hashing the student's password
-        # hashed_password = make_password(password1)
-
-        # Inserting student data to UPR_Grader_DB
-        # Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
-        #                         student_password=hashed_password)
 
         if password1 == password2:
             try:
@@ -68,8 +59,8 @@ def home_page(request):
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
-
         logout_request = request.POST.get('logout', None)
+
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
