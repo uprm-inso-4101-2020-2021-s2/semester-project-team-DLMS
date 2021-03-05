@@ -18,11 +18,11 @@ def register_page(request):
         password2 = request.POST['password2']
 
         # Hashing the student's password
-        # hashed_password = make_password(password1)
+        #hashed_password = make_password(password1)
 
         # Inserting student data to UPR_Grader_DB
-        # Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
-        #                         student_password=hashed_password)
+        #Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
+                             #  student_password=hashed_password)
 
         if password1 == password2:
             try:
