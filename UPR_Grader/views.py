@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib import messages
 from .models import Students
+from .models import Enrolled_Courses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password, check_password
@@ -58,3 +59,5 @@ def login_page(request):
 
 def home_page(request):
     return HttpResponse("WELCOME HOME")
+
+
