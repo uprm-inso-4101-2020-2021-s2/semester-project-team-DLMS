@@ -3,7 +3,6 @@ from django.http import HttpResponse
 from django.contrib.auth import login
 from django.contrib import messages
 from .models import Students
-from .models import Enrolled_Courses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.contrib.auth.hashers import make_password, check_password
@@ -60,4 +59,11 @@ def login_page(request):
 def home_page(request):
     return HttpResponse("WELCOME HOME")
 
+def courses_page(request):
+    if request.method == 'POST':
+        course_code = request.POST['course_code']
+        course_title = request.POST['course_title']
+        course_credits = request.POST['course_credits']
+
+    return render(request, 'UPR_Grader/courses.html')
 
