@@ -1,3 +1,22 @@
+{%  extends 'UPR_Grader/main.html' %}
+
+{% block content %}
+<style>
+
+    .submitButton{
+        text-align: center;
+    }
+
+    .logoutButton {
+        text-align: center;
+    }
+
+    .deleteButton{
+        text-align: center;
+    }
+
+</style>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,49 +24,62 @@
     <title>Settings</title>
 </head>
 <body>
-<table>
-    {% for x in data %}
-        <tr>
-            <td>{{x.student_user.username}}</td>
-        </tr>
-    {% endfor %}
-</table>
 <form action= "" method= "POST">
     {% csrf_token %}
-    <input type="submit" name="logout" value="Logout">
+    <br>
+    <br>
+    <br>
+    <br>
 
+    <h3><p align="center"><label for="program">Academic Program:</label>
 
+        <select name="program" id="program">
+            <option value={{current_student.first.student_program}}>{{ current_student.first.student_program }}</option>
+            <option value="--------" disabled>--------</option>
+            <option value="ICOM">ICOM</option>
+            <option value="INEL">INEL</option>
+            <option value="INSO">INSO</option>
+            <option value="CIIC">CIIC</option>
+        </select></p></h3>
 
-    <label for="program">Select one:</label>
+    <h3><p align="center"><label for="campus">Campus:</label>
 
-    <select name="program" id="program">
-        <option value={{current_student.first.student_program}}>{{ current_student.first.student_program }}</option>
-        <option value="ICOM">ICOM</option>
-        <option value="INEL">INEL</option>
-        <option value="INSO">INSO</option>
-        <option value="CIIC">CIIC</option>
-    </select>
+        <select name="campus" id="campus">
+            <option value={{current_student.first.student_campus}}>{{ current_student.first.student_campus }}</option>
+            <option value="----------------------------------------" disabled>----------------------------------------</option>
+            <option value="UPR - Aguadilla">UPR - Aguadilla</option>
+            <option value="UPR - Arecibo">UPR - Arecibo</option>
+            <option value="UPR - Bayamon">UPR - Bayamon</option>
+            <option value="UPR - Carolina">UPR - Carolina</option>
+            <option value="UPR - Cayey">UPR - Cayey</option>
+            <option value="Recinto de Ciencias Medicas">Recinto de Ciencias Medicas</option>
+            <option value="UPR - Humacao">UPR - Humacao</option>
+            <option value="UPR - Mayaguez">UPR - Mayaguez</option>
+            <option value="UPR -Ponce">UPR - Ponce</option>
+            <option value="UPR - Rio Piedras">UPR - Rio Piedras</option>
+            <option value="UPR - Utuado">UPR - Utuado</option>
+        </select></p></h3>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <div class="submitButton">
+        <button>Submit</button>
+    </div>
+    <br>
+    <div class="logoutButton">
+        <input type="submit" name="logout" value="Logout">
+    </div>
+    <br>
+    <div class="deleteButton">
+        <input type="submit" name="delete_request" value="Delete Account">
+    </div>
+    <br>
 
-    <label for="campus">Select one:</label>
-
-    <select name="campus" id="campus">
-        <option value={{current_student.first.student_campus}}>{{ current_student.first.student_campus }}</option>
-        <option value="Aguadilla">Aguadilla</option>
-        <option value="Arecibo">Arecibo</option>
-        <option value="Bayamon">Bayamon</option>
-        <option value="Carolina">Carolina</option>
-        <option value="Cayey">Cayey</option>
-        <option value="Ciencias Medicas">Ciencias Medicas</option>
-        <option value="Humacao">Humacao</option>
-        <option value="Mayaguez">Mayaguez</option>
-        <option value="Ponce">Ponce</option>
-        <option value="Rio Piedras">Rio Piedras</option>
-        <option value="Utuado">Utuado</option>
-    </select>
-    <input type="submit" value="Submit">
-    <input type="submit" name="delete_request" value="Delete Account">
 
 </form>
 
 </body>
 </html>
+{% endblock %}
