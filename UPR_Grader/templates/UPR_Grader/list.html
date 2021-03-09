@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#courses {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#courses td, #courses th {
+  border: 1px solid #ddd;
+  padding: 4px;
+}
+
+#courses tr:nth-child(even){background-color: #f2f2f2;}
+
+#courses tr:hover {background-color: #ddd;}
+
+#courses th {
+  padding-top: 6px;
+  padding-bottom: 6px;
+  text-align: left;
+  background-color: #4caf50;
+  color: white;
+}
+</style>
+</head>
+<body>
+
+<table id="courses">
+	<thead>
+		<tr>
+			<th>Course code</th>
+			<th>Course title</th>
+			<th>Course credits</th>
+		</tr>
+		
+	</thead>
+	<tbody>
+		{% for list in list %}
+		<tr>
+			<td>{{list.course_code }}</td>
+			<td>{{list.course_title}}</td>
+			<td>{{list.course_credits}}</td>
+
+			<td>
+                <a href= "/edit/{{enrolled_courses.id}}/">Edit</a>
+                <a href="/delete/{{ courses.id }}/"
+          onClick="return confirm('¿Are you sure you want to delete {{list.course_code}}  {{list.course_title}}?');">
+            Delete
+        </a>
+			</td>
+		</tr>
+		{% endfor %}
+		
+
+
+	</tbody>
+</table> 
+

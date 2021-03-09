@@ -1,0 +1,7 @@
+{%  extends 'UPR_Grader/list.html' %}
+<form method="POST">
+    <h1>Edit Course</h1>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">edit</button>
+</form>
