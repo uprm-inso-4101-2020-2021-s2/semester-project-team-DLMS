@@ -1,85 +1,109 @@
 {%  extends 'UPR_Grader/main.html' %}
 
 {% block content %}
-<style>
+    <style>
 
-    .submitButton{
-        text-align: center;
-    }
+        .submitButton {
+            text-align: center;
 
-    .logoutButton {
-        text-align: center;
-    }
+        }
 
-    .deleteButton{
-        text-align: center;
-    }
+        .logoutButton {
+            text-align: center;
+        }
 
-</style>
+        .deleteButton{
+            text-align: center;
+        }
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Settings</title>
-</head>
-<body>
-<form action= "" method= "POST">
-    {% csrf_token %}
-    <br>
-    <br>
-    <br>
-    <br>
+        button {
+            outline: none;
+            height: 35px;
+            text-align: center;
+            width: 150px;
+            border-radius: 40px;
+            background: #fff;
+            border: 2px solid #1ECD97;
+            color: #1ECD97;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
 
-    <h3><p align="center"><label for="program">Academic Program:</label>
+        input {
+            outline: none;
+            height: 35px;
+            text-align: center;
+            width: 150px;
+            border-radius: 40px;
+            background: #fff;
+            border: 2px solid #f54242;
+            color: #f54242;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
 
-        <select name="program" id="program">
-            <option value={{current_student.first.student_program}}>{{ current_student.first.student_program }}</option>
-            <option value="--------" disabled>--------</option>
-            <option value="ICOM">ICOM</option>
-            <option value="INEL">INEL</option>
-            <option value="INSO">INSO</option>
-            <option value="CIIC">CIIC</option>
-        </select></p></h3>
+    </style>
 
-    <h3><p align="center"><label for="campus">Campus:</label>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Settings</title>
+    </head>
+    <body>
+    <form action= "" method= "POST">
+        {% csrf_token %}
+        <br>
+        <br>
+        <br>
+        <br>
 
-        <select name="campus" id="campus">
-            <option value={{current_student.first.student_campus}}>{{ current_student.first.student_campus }}</option>
-            <option value="----------------------------------------" disabled>----------------------------------------</option>
-            <option value="UPR - Aguadilla">UPR - Aguadilla</option>
-            <option value="UPR - Arecibo">UPR - Arecibo</option>
-            <option value="UPR - Bayamon">UPR - Bayamon</option>
-            <option value="UPR - Carolina">UPR - Carolina</option>
-            <option value="UPR - Cayey">UPR - Cayey</option>
-            <option value="Recinto de Ciencias Medicas">Recinto de Ciencias Medicas</option>
-            <option value="UPR - Humacao">UPR - Humacao</option>
-            <option value="UPR - Mayaguez">UPR - Mayaguez</option>
-            <option value="UPR -Ponce">UPR - Ponce</option>
-            <option value="UPR - Rio Piedras">UPR - Rio Piedras</option>
-            <option value="UPR - Utuado">UPR - Utuado</option>
-        </select></p></h3>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <div class="submitButton">
-        <button>Submit</button>
-    </div>
-    <br>
-    <div class="logoutButton">
-        <input type="submit" name="logout" value="Logout">
-    </div>
-    <br>
-    <div class="deleteButton">
-        <input type="submit" name="delete_request" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?')">
-    </div>
-    <br>
+        <h3><p align="center"><label for="program">Academic Program:</label>
+
+            <select name="program" id="program">
+                <option value={{current_student.first.student_program}}>{{ current_student.first.student_program }}</option>
+                <option value="--------" disabled>--------</option>
+                <option value="ICOM">ICOM</option>
+                <option value="INEL">INEL</option>
+                <option value="INSO">INSO</option>
+                <option value="CIIC">CIIC</option>
+            </select></p></h3>
+
+        <h3><p align="center"><label for="campus">Campus:</label>
+
+            <select name="campus" id="campus">
+                <option value={{current_student.first.student_campus}}>{{ current_student.first.student_campus }}</option>
+                <option value="----------------------------------------" disabled>----------------------------------------</option>
+                <option value="UPR - Aguadilla">UPR - Aguadilla</option>
+                <option value="UPR - Arecibo">UPR - Arecibo</option>
+                <option value="UPR - Bayamon">UPR - Bayamon</option>
+                <option value="UPR - Carolina">UPR - Carolina</option>
+                <option value="UPR - Cayey">UPR - Cayey</option>
+                <option value="Recinto de Ciencias Medicas">Recinto de Ciencias Medicas</option>
+                <option value="UPR - Humacao">UPR - Humacao</option>
+                <option value="UPR - Mayaguez">UPR - Mayaguez</option>
+                <option value="UPR -Ponce">UPR - Ponce</option>
+                <option value="UPR - Rio Piedras">UPR - Rio Piedras</option>
+                <option value="UPR - Utuado">UPR - Utuado</option>
+            </select></p></h3>
+        <br>
+        <br>
+        <div class="submitButton">
+            <button id="submitButton">Save</button>
+        </div>
+        <br>
+        <div class="logoutButton">
+            <input type="submit" name="logout" value="Logout" style="margin-right: 20px">
+            <input type="submit" name="delete_request" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?')">
+        </div>
+{#        <div class="deleteButton">#}
+{#            <input type="submit" name="delete_request" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?')">#}
+{#        </div>#}
+        <br>
 
 
-</form>
+    </form>
 
-</body>
-</html>
+    </body>
+    </html>
 {% endblock %}
