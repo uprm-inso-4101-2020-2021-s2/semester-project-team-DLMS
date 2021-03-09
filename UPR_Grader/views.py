@@ -1,11 +1,9 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
 from django.contrib.auth import login, logout
 from django.contrib import messages
 from .models import Students
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
-from django.contrib.auth.hashers import make_password, check_password
 from django.db import *
 from django.core.exceptions import *
 
@@ -17,13 +15,6 @@ def register_page(request):
         last_name = request.POST['last_name']
         password1 = request.POST['password1']
         password2 = request.POST['password2']
-
-        # Hashing the student's password
-        # hashed_password = make_password(password1)
-
-        # Inserting student data to UPR_Grader_DB
-        # Students.objects.create(student_first_name=first_name, student_last_name=last_name, student_email=email,
-        #                         student_password=hashed_password)
 
         if password1 == password2:
             try:
@@ -40,7 +31,7 @@ def register_page(request):
                     return redirect('/home')
 
             except IntegrityError:
-                # CHANGE
+                # TODO: CHANGE
                 print("DUMB")
 
     return render(request, 'UPR_Grader/register.html')
@@ -66,9 +57,10 @@ def login_page(request):
 def home_page(request):
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
-    if request.method == 'POST':
 
+    if request.method == 'POST':
         logout_request = request.POST.get('logout', None)
+
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
@@ -89,10 +81,14 @@ def settings_page(request):
         raise Exception(DisallowedRedirect)
 
     student_data = Students.objects.all()
+    current_student = Students.objects.filter(student_user=request.user.id)
+
     if request.method == 'POST':
-        #campus = request.POST['campus']
+        campus = request.POST.get('campus', None)
         program = request.POST.get('program', None)
         logout_request = request.POST.get('logout', None)
+        delete_request = request.POST.get('delete_request', None)
+
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
@@ -100,4 +96,13 @@ def settings_page(request):
         if request.user.is_authenticated and program is not None:
             Students.objects.filter(student_user=request.user.id).update(student_program=program)
 
-    return render(request, 'UPR_Grader/settings.html', {'data': student_data})
+        if request.user.is_authenticated and campus is not None:
+            Students.objects.filter(student_user=request.user.id).update(student_campus=campus)
+
+        if request.user.is_authenticated and delete_request is not None:
+            Students.objects.filter(student_user=request.user.id).delete()
+            request.user.delete()
+            logout(request)
+            return redirect('../')
+
+    return render(request, 'UPR_Grader/settings.html', {'data': student_data, 'current_student': current_student})
