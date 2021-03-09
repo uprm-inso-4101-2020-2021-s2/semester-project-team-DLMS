@@ -1,0 +1,1 @@
+web: gunicorn IntroProject.wsgi --log-file -
