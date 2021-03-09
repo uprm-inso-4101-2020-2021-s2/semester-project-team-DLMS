@@ -134,9 +134,9 @@ def courses_page(request):
     return render(request, 'UPR_Grader/courses.html', {'form': form})
 
 
-def edit_courses(request, enrolled_courses_id):
+def edit_courses(request, id):
     # course instance
-    instance = Enrolled_Courses.objects.get(id=enrolled_courses_id)
+    instance = Enrolled_Courses.objects.get(id=id)
 
     # creating form with instance data
     form = Enrolled_CoursesForm(instance=instance)
@@ -152,13 +152,16 @@ def edit_courses(request, enrolled_courses_id):
 
             instance.save()
 
+            return redirect('/list')
+
     return render(request, 'UPR_Grader/edit.html', {'form': form})
 
 
-def delete_courses(request, courses_id):
+def delete_courses(request, id):
     # Recuperamos la instancia de la persona y la borramos
-    instance = Enrolled_Courses.objects.get(id=courses_id)
+    instance = Enrolled_Courses.objects.get(id=id)
     instance.delete()
 
     # Después redireccionamos de nuevo a la lista
     return redirect('/list')
+
