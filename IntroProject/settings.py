@@ -25,7 +25,7 @@ SECRET_KEY = '^64z7fks5qn90m%h7*v9md&@4ac_4ftpksc1=17h*iv&t!vnba'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['upr-grader.herokuapp.com/', '127.0.0.1']
+ALLOWED_HOSTS = ['upr-grader.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
