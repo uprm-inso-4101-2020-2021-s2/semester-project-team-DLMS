@@ -10,3 +10,12 @@ class Students(models.Model):
     student_user = models.OneToOneField('auth.User', on_delete=models.CASCADE)
     student_gpa = models.CharField(max_length=4, default=0.00)
     student_major_gpa = models.CharField(max_length=4, default=0.00)
+
+class Enrolled_Courses(models.Model):
+    course_code = models.CharField(max_length=9)
+    course_title = models.CharField(max_length=100)
+    course_credits = models.CharField(max_length=2)
+
+
+
+

@@ -1,11 +1,13 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .models import Students
+from .models import Students, Enrolled_Courses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
 from django.core.exceptions import *
+from .forms import Enrolled_CoursesForm
+
 
 # Create your views here.
 def register_page(request):
@@ -106,3 +108,63 @@ def settings_page(request):
             return redirect('../')
 
     return render(request, 'UPR_Grader/settings.html', {'data': student_data, 'current_student': current_student})
+
+
+def courses_list(request):
+    # List of courses
+    list = Enrolled_Courses.objects.all()
+
+    return render(request, 'UPR_Grader/list.html', {'list': list})
+
+
+def courses_page(request):
+    # Creating an empty form
+    form = Enrolled_CoursesForm()
+
+    if request.method == "POST":
+        # adding receive data to form
+        form = Enrolled_CoursesForm(request.POST)
+        # checking if form is valid
+        if form.is_valid():
+            # creating an instance to manage form
+            # Delete,edit or add a new course
+
+            instance = form.save(commit=False)
+
+            instance.save()
+
+            return redirect('/list')
+
+    return render(request, 'UPR_Grader/courses.html', {'form': form})
+
+
+def edit_courses(request, id):
+    # course instance
+    instance = Enrolled_Courses.objects.get(id=id)
+
+    # creating form with instance data
+    form = Enrolled_CoursesForm(instance=instance)
+
+    if request.method == "POST":
+        # Updating form
+        form = Enrolled_CoursesForm(request.POST, instance=instance)
+        # checking if form is valid
+        if form.is_valid():
+            # Saving form without confirming
+            # In that way we have an instance to manage it
+            instance = form.save(commit=False)
+
+            instance.save()
+
+            return redirect('/list')
+
+    return render(request, 'UPR_Grader/edit.html', {'form': form})
+
+
+def delete_courses(request, id):
+
+    instance = Enrolled_Courses.objects.get(id=id)
+    instance.delete()
+
+    return redirect('/list')
+
