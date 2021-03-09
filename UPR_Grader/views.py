@@ -116,14 +116,13 @@ def courses_page(request):
     # Creating an empty form
     form = Enrolled_CoursesForm()
 
-    # Comprobamos si se ha enviado el formulario
     if request.method == "POST":
         # adding receive data to form
         form = Enrolled_CoursesForm(request.POST)
         # checking if form is valid
         if form.is_valid():
             # creating an instance to manage form
-            # Delete,modificate or add a new course
+            # Delete,edit or add a new course
 
             instance = form.save(commit=False)
 
@@ -158,10 +157,9 @@ def edit_courses(request, id):
 
 
 def delete_courses(request, id):
-    # Recuperamos la instancia de la persona y la borramos
+
     instance = Enrolled_Courses.objects.get(id=id)
     instance.delete()
 
-    # Después redireccionamos de nuevo a la lista
     return redirect('/list')
 
