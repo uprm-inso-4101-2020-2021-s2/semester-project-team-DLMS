@@ -23,8 +23,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '^64z7fks5qn90m%h7*v9md&@4ac_4ftpksc1=17h*iv&t!vnba'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+# SECURITY WARNING: don't run with debug turned on in production!. HAS TO BE SET TO TRUE TO RUN LOCALLY
+DEBUG = True
 
 ALLOWED_HOSTS = ['upr-grader.herokuapp.com', '127.0.0.1']
 
@@ -90,7 +90,8 @@ DATABASES = {
     }
 }
 
-DATABASES['default'] = dj_database_url.config()
+# Comment to run it on debug and locally
+# DATABASES['default'] = dj_database_url.config()
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
