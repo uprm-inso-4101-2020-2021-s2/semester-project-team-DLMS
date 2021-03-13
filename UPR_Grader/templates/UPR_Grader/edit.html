@@ -36,6 +36,10 @@
             text-align:center;
             fone-size:18;
         }
+
+        h4 {
+            text-transform: capitalize;
+        }
         button:hover {
             opacity: 0.8;
         }
@@ -62,7 +66,7 @@
 
     <form method="POST">
         <h1>Edit Course</h1>
-        {{ form.as_p }}
+        <h4>{{ form.as_p }}</h4>
         {% csrf_token %}
         <button type="submit">Edit</button>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
