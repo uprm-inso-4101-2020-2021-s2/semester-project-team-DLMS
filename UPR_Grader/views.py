@@ -114,6 +114,13 @@ def courses_list(request):
     # List of courses
     list = Enrolled_Courses.objects.all()
 
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
+
     return render(request, 'UPR_Grader/list.html', {'list': list})
 
 
