@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+
+        .submitButton {
+            text-align: center;
+        }
+
+        button {
+            outline: none;
+            height: 35px;
+            text-align: center;
+            width: 150px;
+            border-radius: 40px;
+            background: #fff;
+            border: 2px solid #1ECD97;
+            color: #1ECD97;
+            letter-spacing: 1px;
+            font-style: normal;
+        }
+
+        #courses {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 75%;
+        }
+
+        #courses td, #courses th {
+            border: 2px solid #ddd;
+            padding: 6px;
+        }
+
+        #courses th {
+            padding-top: 8px;
+            padding-bottom: 8px;
+            text-align: center;
+            background-color: #4caf50;
+            color: white;
+        }
+        .center {
+            alignment: center;
+            text-align: center;
+        }
+    </style>
+
+    <meta charset="UTF-8">
+    <title>Curriculum</title>
+</head>
+<body>
+
+<!-- -----------------------------------------------FIRST YEAR TABLE----------------------------------------------- -->
+<form method="post">
+    {% csrf_token %}
+    <table class= center id="courses" align="center">
+        <caption><H2>Electrical Engineering Curriculum</H2></caption>
+        <caption><h3>First Year</h3></caption>
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+        </tr>
+
+        <tbody>
+        <tr>
+            <td>MATE 3005</td>
+            <td>Pre-Calculus 1 & 2</td>
+            <td>5</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>MATE 3031</td>
+            <td>Calculus 1</td>
+            <td>4</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>QUIM 3131</td>
+            <td>General Chemistry 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>QUIM 3132</td>
+            <td>General Chemistry 2</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>QUIM 3133</td>
+            <td>Lab of General Chemistry 1</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>QUIM 3134</td>
+            <td>Lab of General Chemistry 2</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>ESPA 3101</td>
+            <td>Basic Spanish 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>ESPA 3102</td>
+            <td>Basic Spanish 2</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INGL 3___</td>
+            <td>First Year English</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INGL 3___</td>
+            <td>First Year English</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INGE 3011</td>
+            <td>Engineering Graphics</td>
+            <td>2</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>EDFI ____</td>
+            <td>Physical Education</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>EDFI ____</td>
+            <td>Physical Education</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <!-- -----------------------------------------------SECOND YEAR TABLE----------------------------------------------- -->
+
+    <table class= center id="courses" align="center">
+        <caption><h3>Second Year</h3></caption>
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+        </tr>
+
+        <tbody>
+        <tr>
+            <td>MATE 3032</td>
+            <td>Calculus 2</td>
+            <td>4</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>MATE 3063</td>
+            <td>Calculus 3</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>FISI 3171</td>
+            <td>Physics 1</td>
+            <td>4</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>FISI 3172</td>
+            <td>Physics 2</td>
+            <td>4</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>FISI 3173</td>
+            <td>Lab of Physics 1</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>FISI 3174</td>
+            <td>Lab of Physics 2</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INGE 3016</td>
+            <td>Algorithms and Computer Programming</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INGE 3045</td>
+            <td>Materials Science for Electrical Engineers</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INGL 3___</td>
+            <td>Second Year English</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 3105</td>
+            <td>Electrical Systems Analysis 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INGE 3035</td>
+            <td>Engineering Mechanics</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INGL 3___</td>
+            <td>Second Year English</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <!-- -----------------------------------------------THIRD YEAR TABLE----------------------------------------------- -->
+
+    <table class= center id="courses" align="center">
+        <caption><h3>Third Year</h3></caption>
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+        </tr>
+
+        <tbody>
+        <tr>
+            <td>MATE 4009</td>
+            <td>Ordinary Differential Equations</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>ININ 4010</td>
+            <td>Probability and Statistics for Engineers</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4102</td>
+            <td>Electrical Systems Analysis 2</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4103</td>
+            <td>Electrical Systems Analysis 3</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4205</td>
+            <td>Logic Circuits</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4095</td>
+            <td>Systems and Signals</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4201</td>
+            <td>Electronics 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4211</td>
+            <td>Lab of Electronics</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4151</td>
+            <td>Electromagnetics 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4___</td>
+            <td>Elective of Amplitude in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4115</td>
+            <td>Lab of Electrical Measurements</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4206</td>
+            <td>Microprocessors 1</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <!-- -----------------------------------------------FOURTH YEAR TABLE----------------------------------------------- -->
+
+    <table class= center id="courses" align="center">
+        <caption><h3>Fourth Year</h3></caption>
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+        </tr>
+
+        <tbody>
+        <tr>
+            <td>ININ 4015</td>
+            <td>Engineering Economic Analysis</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INME 4045</td>
+            <td>Thermodynamics</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4___</td>
+            <td>Elective of Amplitude in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>MATE/INGE</td>
+            <td>Elective in Advanced Mathematics</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4___</td>
+            <td>Elective of Amplitude in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 4406</td>
+            <td>Lab of Electric Machines</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4505</td>
+            <td>Introduction to Control Systems</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL ____</td>
+            <td>Elective of Depth in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL 4___</td>
+            <td>Elective of Amplitude in Electrical Engineering</td>
+            <td>1</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL ____</td>
+            <td>Elective of Depth in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Free Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td>Sociohumanistic Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <!-- -----------------------------------------------FIFTH YEAR TABLE----------------------------------------------- -->
+
+    <table class= center id="courses" align="center">
+        <caption><h3>Fifth Year</h3></caption>
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+        </tr>
+
+        <tbody>
+        <tr>
+            <td>INEL ____</td>
+            <td>Elective of Depth in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL 5195</td>
+            <td>Capstone</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>INEL ____</td>
+            <td>Elective of Depth in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td>INEL ____</td>
+            <td>Elective of Depth in Electrical Engineering</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Sociohumanistic Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td>Sociohumanistic Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Sociohumanistic Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td>Sociohumanistic Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Free Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td>Free Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td>Free Elective</td>
+            <td>3</td>
+            <td>
+                <select>
+                    <option value=""></option>
+                    <option disabled value="--">--</option>
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="F">F</option>
+                </select>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        </tbody>
+
+    </table>
+
+    <br>
+
+
+    <div class="submitButton">
+        <button id="submitButton" name="saveChanges" style="margin-right: 20px" onclick="return alert('Changes Saved Successfully!')">Save Changes</button>
+        <button id="homeButton" name="homeButton" style="margin-right: 20px">Home</button>
+        <button id="pdfSave" name="pdfSave">Save as PDF</button>
+    </div>
+
+    <br>
+
+</form>
+</body>
+</html>

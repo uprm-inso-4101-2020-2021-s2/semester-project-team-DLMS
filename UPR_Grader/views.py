@@ -7,6 +7,10 @@ from django.contrib.auth import authenticate
 from django.db import *
 from django.core.exceptions import *
 from .forms import Enrolled_CoursesForm
+from django.template.loader import get_template
+from django.template import Context
+from django.http import HttpResponse
+from xhtml2pdf import pisa
 
 
 # Create your views here.
@@ -175,3 +179,32 @@ def delete_courses(request, id):
 
     return redirect('/list')
 
+
+def curriculum_page(request):
+    if not request.user.is_authenticated:
+        raise Exception(DisallowedRedirect)
+
+    if request.method == 'POST':
+        save_changes = request.POST.get('saveChanges', None)
+        pdf_save = request.POST.get('pdfSave', None)
+        home_button = request.POST.get('homeButton', None)
+
+        if request.user.is_authenticated and home_button is not None:
+            return redirect('../home')
+
+
+    # Selecting Curriculum to Render
+    if request.user.students.student_program == "ICOM":
+        return render(request, 'UPR_Grader/icom_curriculum.html')
+
+    elif request.user.students.student_program == "INEL":
+        return render(request, 'UPR_Grader/inel_curriculum.html')
+
+    elif request.user.students.student_program == "INSO":
+        return render(request, 'UPR_Grader/inso_curriculum.html')
+
+    elif request.user.students.student_program == "CIIC":
+        return render(request, 'UPR_Grader/ciic_curriculum.html')
+
+    else:
+        return render(request, 'UPR_Grader/no_academic_program.html')
