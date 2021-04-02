@@ -1,16 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .models import Students, Enrolled_Courses
+from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses,Courses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
 from django.core.exceptions import *
-from .forms import Enrolled_CoursesForm
+from .forms import Enrolled_CoursesForm, Curriculum_Form
 from django.template.loader import get_template
 from django.template import Context
 from django.http import HttpResponse
-from xhtml2pdf import pisa
 
 
 # Create your views here.
@@ -181,30 +180,52 @@ def delete_courses(request, id):
 
 
 def curriculum_page(request):
+    form = Curriculum_Form()
+    program = request.user.students.student_program
+    program_courses = Program_Courses.objects.select_related('program', 'course').order_by('semester').filter(program=program)
+    program_courses_list = []
+    courses_taken = StudentCourses.objects.filter(student=request.user.id).select_related('course')
+    submit_button = request.POST.get('submit', None)
+
+    for course in program_courses:
+        print(course.course.course_code)
+        program_courses_list.append(course.course.course_code)
+
     if not request.user.is_authenticated:
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
-        save_changes = request.POST.get('saveChanges', None)
-        pdf_save = request.POST.get('pdfSave', None)
-        home_button = request.POST.get('homeButton', None)
+        # internalForm = Curriculum_Form(request.POST)
+        grades = request.POST.getlist('course_grade')
+        print(grades)
 
-        if request.user.is_authenticated and home_button is not None:
-            return redirect('../home')
+        print(courses_taken)
 
+        for i in range(len(program_courses)):
+            if grades[i] is not "":
+                found = False
 
-    # Selecting Curriculum to Render
-    if request.user.students.student_program == "ICOM":
-        return render(request, 'UPR_Grader/icom_curriculum.html')
+                for taken in courses_taken:
+                    if taken.course_id == program_courses_list[i]:
+                        found = True
+                        StudentCourses.objects.filter(id=taken.id).update(course_grade=grades[i])
+                if not found:
+                    new_course = StudentCourses.objects.create(course_grade=grades[i], student=Students.objects.filter(student_user=request.user.id)[0], course_id=program_courses_list[i])
+                    new_course.save()
 
-    elif request.user.students.student_program == "INEL":
-        return render(request, 'UPR_Grader/inel_curriculum.html')
-
-    elif request.user.students.student_program == "INSO":
-        return render(request, 'UPR_Grader/inso_curriculum.html')
-
-    elif request.user.students.student_program == "CIIC":
-        return render(request, 'UPR_Grader/ciic_curriculum.html')
+        if submit_button is not None:
+            return redirect('/curriculum')
 
     else:
-        return render(request, 'UPR_Grader/no_academic_program.html')
+        form = Curriculum_Form()
+
+    return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
+
+
+
+
+
+
+
+
+
