@@ -5,14 +5,9 @@
 
         .submitButton {
             text-align: center;
-
         }
 
-        .logoutButton {
-            text-align: center;
-        }
-
-        .deleteButton{
+        .redButtons {
             text-align: center;
         }
 
@@ -89,16 +84,13 @@
         <br>
         <br>
         <div class="submitButton">
-            <button id="submitButton">Save</button>
+                <button id="submitButton" onclick="return alert('Successfully Saved!')">Save</button>
         </div>
         <br>
-        <div class="logoutButton">
+        <div class="redButtons">
             <input type="submit" name="logout" value="Logout" style="margin-right: 20px">
             <input type="submit" name="delete_request" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?')">
         </div>
-{#        <div class="deleteButton">#}
-{#            <input type="submit" name="delete_request" value="Delete Account" onclick="return confirm('Are you sure you want to delete your account?')">#}
-{#        </div>#}
         <br>
 
 

@@ -1,0 +1,337 @@
+<style>
+
+    #courses, #courses1, #courses2, #courses3, #courses4, #courses5, #courses6, #courses7, #courses8, #courses9 {
+        font-family: Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 75%;
+    }
+
+    #courses td, #courses1 td, #courses2 td, #courses3 td,  #courses4 td,  #courses5 td,  #courses6 td,  #courses7 td,  #courses8 td,  #courses9 td,
+    #courses th, #courses1 th, #courses2 th, #courses3 th, #courses4 th, #courses5 th, #courses6 th, #courses7 th, #courses8 th, #courses9 th {
+        border: 2px solid #ddd;
+        padding: 6px;
+    }
+
+    #courses th, #courses1 th, #courses2 th, #courses3 th, #courses4 th, #courses5 th, #courses6 th, #courses7 th, #courses8 th, #courses9 th {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        text-align: center;
+        background-color: #4caf50;
+        color: white;
+    }
+    .center {
+        alignment: center;
+        text-align: center;
+    }
+</style>
+
+
+<form method = 'POST'>
+
+    {% csrf_token %}
+
+    <caption><H2 align="center">Computer Engineering Curriculum</H2></caption>
+    <caption><h3 align="center">First Year</h3></caption>
+
+    <table class= center id="courses" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 1 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+
+
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table class= center id="courses1" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 2 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <caption><h3 align="center">Second Year</h3></caption>
+
+    <table class= center id="courses2" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 3 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table class= center id="courses3" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 4 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <caption><h3 align="center">Third Year</h3></caption>
+
+    <table class= center id="courses4" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 5 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table class= center id="courses5" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 6 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <caption><h3 align="center">Fourth Year</h3></caption>
+
+    <table class= center id="courses6" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 7 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table class= center id="courses7" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 8 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <caption><h3 align="center">Fifth Year</h3></caption>
+
+    <table class= center id="courses8" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">First Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 9 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+    <br>
+
+    <table class= center id="courses9" align="center">
+
+        <colgroup span="2" style="alignment: center"></colgroup>
+        <tr>
+            <th colspan="4">Second Semester</th>
+        </tr>
+
+        <colgroup span="8"></colgroup>
+        <tr>
+            <th>Course Code</th>
+            <th width="24%">Course Title</th>
+            <th>Course Credits</th>
+            <th>Course Grade</th>
+
+        </tr>
+        {% for course in program_courses %}
+            <tbody>
+            {% if course.semester == 10 %}
+                <td>{{ course.course.course_code }}</td>
+                <td>{{ course.course.course_name }}</td>
+                <td>{{ course.course.course_credits }}</td>
+                <td>{{ form.course_grade }}</td>
+            {% endif %}
+
+        {% endfor %}
+    </table>
+
+
+    </tbody>
+    <script>
+        var table = document.getElementsByTagName("tr")
+
+        for( i = 0; i < table.length; i ++){
+            console.log(table[i])
+        }
+
+    </script>
+    <button type="submit" value="Submit" id="submit" name="submit">Submit</button>
+</form>
