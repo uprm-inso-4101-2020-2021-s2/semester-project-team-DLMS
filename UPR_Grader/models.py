@@ -41,7 +41,7 @@ class Enrolled_Courses(models.Model):
     course_code = models.CharField(max_length=9)
     course_title = models.CharField(max_length=100)
     course_credits = models.CharField(max_length=2)
-    student = models.OneToOneField('Students', on_delete=models.CASCADE)
+    student = models.ForeignKey('Students', on_delete=models.CASCADE)
 
 
 
