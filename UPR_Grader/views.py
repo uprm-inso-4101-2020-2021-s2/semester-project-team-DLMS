@@ -1,16 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses, Courses
+from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
 from django.core.exceptions import *
 from .forms import Enrolled_CoursesForm, Curriculum_Form, Edit_Form
-from django.forms import modelformset_factory
-from django.template.loader import get_template
-from django.template import Context
-from django.http import HttpResponse
 
 
 # Create your views here.
@@ -166,7 +162,6 @@ def edit_courses(request, id):
     return render(request, 'UPR_Grader/edit.html', {'form': form})
 
 
-
 def delete_courses(request, id):
 
     instance = Enrolled_Courses.objects.get(id=id)
@@ -184,7 +179,6 @@ def curriculum_page(request):
     submit_button = request.POST.get('submit', None)
 
     for course in program_courses:
-        print(course.course.course_code)
         program_courses_list.append(course.course.course_code)
 
     if not request.user.is_authenticated:
@@ -193,9 +187,6 @@ def curriculum_page(request):
     if request.method == 'POST':
         # internalForm = Curriculum_Form(request.POST)
         grades = request.POST.getlist('course_grade')
-        print(grades)
-
-        print(courses_taken)
 
         for i in range(len(program_courses)):
             if grades[i] is not "":
@@ -206,7 +197,8 @@ def curriculum_page(request):
                         found = True
                         StudentCourses.objects.filter(id=taken.id).update(course_grade=grades[i])
                 if not found:
-                    new_course = StudentCourses.objects.create(course_grade=grades[i], student=Students.objects.filter(student_user=request.user.id)[0], course_id=program_courses_list[i])
+                    new_course = StudentCourses.objects.create(course_grade=grades[i], student=Students.objects.filter(student_user=request.user.id)[0],
+                                                               course_id=program_courses_list[i])
                     new_course.save()
 
         if submit_button is not None:
@@ -216,12 +208,3 @@ def curriculum_page(request):
         form = Curriculum_Form()
 
     return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
-
-
-
-
-
-
-
-
-
