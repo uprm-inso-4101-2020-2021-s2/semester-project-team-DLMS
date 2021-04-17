@@ -207,4 +207,11 @@ def curriculum_page(request):
     else:
         form = Curriculum_Form()
 
-    return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
+    if request.user.students.student_program == "ICOM":
+        return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
+
+    elif request.user.students.student_program == "INEL" or request.user.students.student_program == "CIIC" or request.user.students.student_program == "INSO":
+        return render(request, 'UPR_Grader/coming_soon.html')
+
+    else:
+        return render(request, 'UPR_Grader/no_academic_program.html')
