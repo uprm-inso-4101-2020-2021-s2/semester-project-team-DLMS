@@ -33,8 +33,7 @@ def register_page(request):
                     return redirect('/home')
 
             except IntegrityError:
-                # TODO: CHANGE
-                print("DUMB")
+                print("Integrity Error")
 
     return render(request, 'UPR_Grader/register.html')
 
@@ -176,7 +175,11 @@ def curriculum_page(request):
     program_courses = Program_Courses.objects.select_related('program', 'course').order_by('semester').filter(program=program)
     program_courses_list = []
     courses_taken = StudentCourses.objects.filter(student=request.user.id).select_related('course')
-    submit_button = request.POST.get('submit', None)
+    submit_button = request.POST.get('submitButton', None)
+    home_button = request.POST.get('homeButton', None)
+
+    if home_button is not None:
+        return redirect('../home')
 
     for course in program_courses:
         program_courses_list.append(course.course.course_code)
@@ -185,7 +188,6 @@ def curriculum_page(request):
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
-        # internalForm = Curriculum_Form(request.POST)
         grades = request.POST.getlist('course_grade')
 
         for i in range(len(program_courses)):

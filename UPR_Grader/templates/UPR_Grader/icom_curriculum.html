@@ -23,6 +23,24 @@
         alignment: center;
         text-align: center;
     }
+
+    .buttons {
+        text-align: center;
+    }
+
+    button {
+        outline: none;
+        height: 35px;
+        text-align: center;
+        width: 150px;
+        border-radius: 40px;
+        background: #fff;
+        border: 2px solid #1ECD97;
+        color: #1ECD97;
+        letter-spacing: 1px;
+        font-style: normal;
+    }
+
 </style>
 
 
@@ -333,5 +351,12 @@
         }
 
     </script>
-    <button type="submit" value="Submit" id="submit" name="submit">Submit</button>
+
+    <br>
+
+    <div class="buttons">
+        <button id="submitButton" name="submitButton" style="margin-right: 20px" onclick="return alert('Changes Saved Successfully!')">Save Changes</button>
+        <button id="homeButton" name="homeButton" style="margin-right: 20px">Home</button>
+    </div>
+
 </form>
