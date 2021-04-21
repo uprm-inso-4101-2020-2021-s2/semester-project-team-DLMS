@@ -33,8 +33,7 @@ def register_page(request):
                     return redirect('/home')
 
             except IntegrityError:
-                # TODO: CHANGE
-                print("DUMB")
+                print("Integrity Error")
 
     return render(request, 'UPR_Grader/register.html')
 
@@ -189,7 +188,6 @@ def curriculum_page(request):
         raise Exception(DisallowedRedirect)
 
     if request.method == 'POST':
-        # internalForm = Curriculum_Form(request.POST)
         grades = request.POST.getlist('course_grade')
 
         for i in range(len(program_courses)):
