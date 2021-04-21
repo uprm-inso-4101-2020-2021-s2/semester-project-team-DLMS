@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'IntroProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'UPR_Grader_DB',
-        'USER': 'postgres',
-        'PASSWORD': '1234',
-        'HOST': '127.0.0.1',
+        'NAME': 'd45hqracng9b3',
+        'USER': 'zsielpqyuztcwn',
+        'PASSWORD': '429a50eca8d3262506d08a870ef17d1561d5d3f40c64e603762bdd38e3da4d2d',
+        'HOST': 'ec2-52-44-31-100.compute-1.amazonaws.com',
         'PORT': '5432',
     }
 }
