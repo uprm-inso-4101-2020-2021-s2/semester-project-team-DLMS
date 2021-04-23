@@ -335,7 +335,7 @@
                 <td>{{ course.course.course_code }}</td>
                 <td>{{ course.course.course_name }}</td>
                 <td>{{ course.course.course_credits }}</td>
-                <td>{{ form.course_grade }}</td>
+                <td>{% for x in courses_taken %} {% if x.course.course_code == course.course.course_code  %}{{ x.course_grade }}{% endif %} {% endfor %} {{ form.course_grade }}</td>
             {% endif %}
 
         {% endfor %}
