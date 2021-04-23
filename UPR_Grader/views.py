@@ -263,8 +263,11 @@ def curriculum_page(request):
     if request.user.students.student_program == "ICOM":
         return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
 
-    elif request.user.students.student_program == "INEL" or request.user.students.student_program == "CIIC" or request.user.students.student_program == "INSO":
+    elif request.user.students.student_program == "CIIC" or request.user.students.student_program == "INSO":
         return render(request, 'UPR_Grader/coming_soon.html')
+
+    elif request.user.students.student_program == "INEL":
+        return render(request, 'UPR_Grader/inel_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
 
     else:
         return render(request, 'UPR_Grader/no_academic_program.html')
