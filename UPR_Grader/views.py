@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses
+from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses, Courses
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
@@ -65,6 +65,57 @@ def home_page(request):
         if request.user.is_authenticated and logout_request is not None:
             logout(request)
             return redirect('../')
+
+    # Calculating Overall GPA
+    student_courses = StudentCourses.objects.filter(student=request.user.id).select_related('course')
+    honor_points = 0
+    total_credits = 0
+    for i in student_courses:
+        course_grade = i.course_grade
+        course_credits = i.course.course_credits
+        total_credits = total_credits + course_credits
+        if course_grade == 'A':
+            honor_points = honor_points + 4 * course_credits
+        elif course_grade == 'B':
+            honor_points = honor_points + 3 * course_credits
+        elif course_grade == 'C':
+            honor_points = honor_points + 2 * course_credits
+        elif course_grade == 'D':
+            honor_points = honor_points + 1 * course_credits
+        elif course_grade == 'F':
+            honor_points = honor_points + 0 * course_credits
+
+    if honor_points != 0 and total_credits != 0:
+        overall_gpa = honor_points / total_credits
+        Students.objects.filter(student_user=request.user.id).update(student_gpa=round(overall_gpa, 2))
+    else:
+        Students.objects.filter(student_user=request.user.id).update(student_gpa=0.0)
+
+    # Calculating Major GPA
+    major_honor_points = 0
+    major_total_credits = 0
+    if Students.objects.filter(student_user=request.user.id).first().student_program == "ICOM":
+        for i in student_courses:
+            if i.course.course_code[:4] == "ICOM" or i.course.course_code[:4] == "INEL":
+                course_grade = i.course_grade
+                course_credits = i.course.course_credits
+                major_total_credits = major_total_credits + course_credits
+                if course_grade == 'A':
+                    major_honor_points = major_honor_points + 4 * course_credits
+                elif course_grade == 'B':
+                    major_honor_points = major_honor_points + 3 * course_credits
+                elif course_grade == 'C':
+                    major_honor_points = major_honor_points + 2 * course_credits
+                elif course_grade == 'D':
+                    major_honor_points = major_honor_points + 1 * course_credits
+                elif course_grade == 'F':
+                    major_honor_points = major_honor_points + 0 * course_credits
+
+    if major_honor_points != 0 and major_total_credits != 0:
+        major_gpa = major_honor_points / major_total_credits
+        Students.objects.filter(student_user=request.user.id).update(student_major_gpa=round(major_gpa, 2))
+    else:
+        Students.objects.filter(student_user=request.user.id).update(student_major_gpa=0.0)
 
     name = request.user.first_name + ' ' + request.user.last_name
     context = {'name': name,
