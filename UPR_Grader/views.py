@@ -111,6 +111,23 @@ def home_page(request):
                 elif course_grade == 'F':
                     major_honor_points = major_honor_points + 0 * course_credits
 
+    elif Students.objects.filter(student_user=request.user.id).first().student_program == "INEL":
+        for i in student_courses:
+            if i.course.course_code[:4] == "INEL":
+                course_grade = i.course_grade
+                course_credits = i.course.course_credits
+                major_total_credits = major_total_credits + course_credits
+                if course_grade == 'A':
+                    major_honor_points = major_honor_points + 4 * course_credits
+                elif course_grade == 'B':
+                    major_honor_points = major_honor_points + 3 * course_credits
+                elif course_grade == 'C':
+                    major_honor_points = major_honor_points + 2 * course_credits
+                elif course_grade == 'D':
+                    major_honor_points = major_honor_points + 1 * course_credits
+                elif course_grade == 'F':
+                    major_honor_points = major_honor_points + 0 * course_credits
+
     if major_honor_points != 0 and major_total_credits != 0:
         major_gpa = major_honor_points / major_total_credits
         Students.objects.filter(student_user=request.user.id).update(student_major_gpa=round(major_gpa, 2))
