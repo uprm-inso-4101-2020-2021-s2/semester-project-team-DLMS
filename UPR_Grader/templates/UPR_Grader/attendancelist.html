@@ -1,4 +1,8 @@
-{%  extends 'UPR_Grader/main.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%  extends 'UPR_Grader/main.html' %}
 
 {% block content %}
     <!DOCTYPE html>
@@ -49,29 +53,18 @@
         <thead>
         <tr>
 
-            <th>Course Code</th>
-            <th>Course Title</th>
-            <th>Course Credits</th>
-            <th>Modifications</th>
+            <th>Course Date</th>
+            <th>Course Status</th>
+
 
         </tr>
 
         </thead>
         <tbody>
-        {% for list in list %}
+        {% for attendances in attendances %}
             <tr>
-                <td>{{list.course_code }}</td>
-                <td>{{list.course_title}}</td>
-                <td>{{list.course_credits}}</td>
-
-                <td>
-                    <a href= "/attendance/">Attendance</a>
-                    <a href= "/grades/">Grades</a>
-                    <a href= "/edit/{{ list.id }}/">Edit</a>
-                    <a href="/delete/{{ list.id }}/"
-                       onClick="return confirm('Are you sure you want to delete {{list.course_code}} - {{list.course_title}}?');">Delete</a>
-
-                </td>
+                <td>{{attendances.course_date}}</td>
+                <td>{{attendances.course_status}}</td>
             </tr>
         {% endfor %}
 
@@ -79,3 +72,9 @@
     </table>
 {% endblock %}
 
+</title>
+</head>
+<body>
+
+</body>
+</html>

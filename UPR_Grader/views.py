@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
-from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses
+from .models import Students, Enrolled_Courses, Program_Courses, StudentCourses, Attendance, Grades
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate
 from django.db import *
 from django.core.exceptions import *
-from .forms import Enrolled_CoursesForm, Curriculum_Form, Edit_Form
+from .forms import Enrolled_CoursesForm, Curriculum_Form, Edit_Form, AttendanceForm, GradesForm
 
 
 # Create your views here.
@@ -125,17 +125,82 @@ def courses_list(request):
 
 def courses_page(request):
     # Creating an empty form
+
     form = Enrolled_CoursesForm()
 
     if request.method == "POST":
-        instance = Enrolled_Courses.objects.create(course_credits=request.POST.getlist('course_credits')[0], course_title=request.POST.getlist('course_title')[0],
-                                                   student_id=request.user.id, course_code=request.POST.getlist('course_code')[0])
+        instance = Enrolled_Courses.objects.create(course_credits=request.POST.getlist('course_credits')[0],
+                                                   course_title=request.POST.getlist('course_title')[0],
+                                                   student_id=request.user.id,
+                                                   course_code=request.POST.getlist('course_code')[0])
 
         instance.save()
 
         return redirect('/list')
 
     return render(request, 'UPR_Grader/courses.html', {'form': form})
+
+
+def attendance_report(request):
+    form = AttendanceForm()
+
+    if request.method == "POST":
+        instance = Attendance.objects.create(course_date=request.POST.getlist('course_date')[0],
+                                             course_status=request.POST.getlist('course_status')[0],
+                                             courses_id=request.user.id
+
+                                             )
+
+        instance.save()
+
+        return redirect('/attendancelist')
+
+    return render(request, 'UPR_Grader/attendance.html', {'form': form})
+
+
+def attendance_list(request):
+    # List of courses
+    attendances = Attendance.objects.filter(courses_id=request.user.id)
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
+
+    return render(request, 'UPR_Grader/attendancelist.html', {'attendances': attendances})
+
+
+def grade_report(request):
+    form = GradesForm()
+
+    if request.method == "POST":
+        instance = Grades.objects.create(grade_name=request.POST.getlist('grade_name')[0],
+                                         grade_value=request.POST.getlist('grade_value')[0],
+                                         grade_char=request.POST.getlist('grade_char')[0],
+                                         courses_id=request.user.id
+                                         )
+
+        instance.save()
+
+        return redirect('/gradelist')
+
+    return render(request, 'UPR_Grader/grades.html', {'form': form})
+
+
+def grade_list(request):
+    # List of courses
+    grades = Grades.objects.filter(courses_id=request.user.id)
+
+    if request.method == 'POST':
+        logout_request = request.POST.get('logout', None)
+
+        if request.user.is_authenticated and logout_request is not None:
+            logout(request)
+            return redirect('../')
+
+    return render(request, 'UPR_Grader/gradelist.html', {'grades': grades})
 
 
 def edit_courses(request, id):
@@ -162,7 +227,6 @@ def edit_courses(request, id):
 
 
 def delete_courses(request, id):
-
     instance = Enrolled_Courses.objects.get(id=id)
     instance.delete()
 
@@ -172,7 +236,8 @@ def delete_courses(request, id):
 def curriculum_page(request):
     form = Curriculum_Form()
     program = request.user.students.student_program
-    program_courses = Program_Courses.objects.select_related('program', 'course').order_by('semester').filter(program=program)
+    program_courses = Program_Courses.objects.select_related('program', 'course').order_by('semester').filter(
+        program=program)
     program_courses_list = []
     courses_taken = StudentCourses.objects.filter(student=request.user.id).select_related('course')
     submit_button = request.POST.get('submitButton', None)
@@ -199,7 +264,8 @@ def curriculum_page(request):
                         found = True
                         StudentCourses.objects.filter(id=taken.id).update(course_grade=grades[i])
                 if not found:
-                    new_course = StudentCourses.objects.create(course_grade=grades[i], student=Students.objects.filter(student_user=request.user.id)[0],
+                    new_course = StudentCourses.objects.create(course_grade=grades[i], student=
+                    Students.objects.filter(student_user=request.user.id)[0],
                                                                course_id=program_courses_list[i])
                     new_course.save()
 
@@ -210,7 +276,8 @@ def curriculum_page(request):
         form = Curriculum_Form()
 
     if request.user.students.student_program == "ICOM":
-        return render(request, 'UPR_Grader/icom_curriculum.html', {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
+        return render(request, 'UPR_Grader/icom_curriculum.html',
+                      {'form': form, 'program_courses': program_courses, 'courses_taken': courses_taken})
 
     elif request.user.students.student_program == "INEL" or request.user.students.student_program == "CIIC" or request.user.students.student_program == "INSO":
         return render(request, 'UPR_Grader/coming_soon.html')
